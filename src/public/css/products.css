@@ -1,0 +1,118 @@
+.header {
+    background-color: #FFFFFF;
+}
+
+.header__title {
+    font-style: jsMath-cmti10;
+    color:#F5C800;
+}
+
+.grid__parent {
+    display: grid;
+    grid-template-rows: 100px 300px 300px 100px;
+    grid-template-columns: 1fr 4fr;
+    background-color: #FFFFFF;
+    background-color: #F8F8F8;
+}
+.header__bar {
+    grid-column: 1/5;
+    grid-row: 1/2;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__bar-title{
+    font-size: 20px;
+    display: inline-block;
+    margin: auto 0;
+}
+
+.header__bar-add{
+    display: inline-block;
+    background-color: #FFA929;
+    height: 30px;
+    margin: auto 0;
+    padding: 0 15px;
+    border: none
+}
+
+
+.search {
+    grid-column: 1/2;
+    grid-row: 2/7;
+
+}
+.search-form__item-input {
+    margin: 0 10px 10px 10px;
+    width: 80%;
+    height: 30px;
+    border: solid 1px #E0DFDE;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #E0DFDE;
+}
+.search__button-submit {
+    display: block;
+    margin: 0 10px 10px 10px;
+    width: 80%;
+    height: 30px;
+    background: #F5C800;
+    border: none;
+    font-size: 12px;
+}
+.search__form-sub {
+    margin: 40px 10px 10px 10px;
+}
+.search-form__item-price {
+    margin: 0 10px 10px 10px;
+    width: 80%;
+    height: 30px;
+    border: solid 1px #E0DFDE;
+    border-radius: 3px;
+    color: #E0DFDE;
+    font-size: 12px;
+}
+
+
+.products__first-row{
+    grid-column: 2/5;
+    grid-row: 2/5;
+}
+.products__second-row {
+    grid-column: 2/5;
+    grid-row: 5/8
+}
+.flex__item {
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.product__card{
+    width: 90%;    
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card__img img {
+    width: 100%;
+    height: 100px;
+}
+
+.card__content{
+    display: flex;
+    justify-content: space-between;
+}
+.card__content-name {
+    display: inline-block;
+    margin-left: 10px;
+    /* 横並びにするためにinline-blockを指定 */
+}
+
+.card__content-price {
+    display: inline-block;
+    margin-right: 10px;
+    /* 横並びにするためにinline-blockを指定 */
+}
