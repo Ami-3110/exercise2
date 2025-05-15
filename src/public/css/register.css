@@ -3,61 +3,109 @@
 }
 
 .header__title {
-    font-style: jsMath-cmti10;
+    font-style: jsMath-cmti10;/*フォント入れないと*/
     color: #F5C800;
 }
 
+main {
+    background-color: #F8F8F8;
+    padding-bottom: 200px;
+}
 
 .register__content {
-    width: 60%;
-    background-color: #F8F8F8;
+    width: 50%;
+    margin: 0 auto;
 }
 .registration__title {
-        font-size: 20px;
-        display: inline-block;
+    font-size: 20px;
+    display: inline-block;
+    height: 50px;
 
 }
 
 .form__group {
     width: 100%;
-    margin: 0 auto;
+    margin: 20px auto;
 }
 
 
 .form__group-title {
-    
+    height: 30px;
 }
 .form__label--item {
     color: #4B4B4B;
+    font-size: 14px;
 }
 .form__label--required {
     background-color: #FD0707;
     color: #FFFFFF;
+    font-size: 14px;
+    margin-left: 10px;
 }
 .form__label--multi {
     color: #FD0707;
+    font-size: 14px;
+    margin-left: 10px;
 }
 
 
 .form__group-content {
-
+    margin-bottom: 30px;
+    color: #4B4B4B;
 }
-.form__label--item{
+.form__input--text input{
+    width: 100%;
+    height: 30px;
     border: solid 1px #E0DFDE;
 }
+.form__select--button input {
+    color: #4B4B4B;
+}
+input[type=checkbox] {
+    display: none;       
+}
+.form__input--checkbox {
+    font-size: 14px;
+    color: #4B4B4B;
+}
+.form__input--checkbox input{
+    width: 20px;
+    display: inline-block;
+    border: #4B4B4B 1px solid;
+    border-radius: 50%;
+    font-size: 14px;
+    color: #4B4B4B;
+}
+.season__gap {
+    margin-right: 20px;
+}
+.form__input--textarea textarea{
+    height: 180px;
+    width: 100%;
+}
+
+
 .form__error {
     color: #FD0707;
 }
 
 
 .form__button {
+    width: 100%;
     margin: 0 auto;
+    text-align: center;
 }
 .form__button-return {
     display: inline-block;
+    padding:  10px 50px;
     background-color: #E0DFDE;
+    border: none;
+    box-shadow: 0 3px 5px #7d7d7d;
 }
 .form__button-submit {
     display: inline-block;
+    padding: 10px 50px;
     background-color: #F5C800;
+    border: none;
+    box-shadow: 0 3px 5px  #7d7d7d;
 }

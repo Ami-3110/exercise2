@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Season;
-use App\Models\Product_Seasons;
+use App\Models\Product_Season;
 
 class ProductController extends Controller
 {

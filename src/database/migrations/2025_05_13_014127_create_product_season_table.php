@@ -13,7 +13,7 @@ class CreateProductSeasonTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_seasons', function (Blueprint $table) {
+        Schema::create('product_season', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             $table->foreginId('season_id')->constrained()->cascadeOnDelete();

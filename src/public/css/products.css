@@ -3,7 +3,7 @@
 }
 
 .header__title {
-    font-style: jsMath-cmti10;
+    font-style: jsMath-cmti10;/*フォント入れないと*/
     color:#F5C800;
 }
 
