@@ -9,16 +9,20 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable =['name','price','description'];
+    protected $fillable =['name','price','image','season_id','description'];
 
-    public function category(){
-        return $this -> belongsTo(Category::class);
+
+ 
+
+
+    public function seasons(){
+        return $this -> belongsToMany(Season::class);
     }
 
 
     public function scopeKeywordSearch($query, $keyword){
         if (!empty($keyword)) {
-        $query->where('detail', 'like', '%' . $keyword . '%');
+        $query->where('description', 'like', '%' . $keyword . '%');
         }
     }
 }

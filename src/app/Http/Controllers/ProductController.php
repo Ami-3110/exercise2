@@ -5,34 +5,37 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Season;
+use App\Models\Product_Seasons;
 
 class ProductController extends Controller
 {
-    public function index($text = ""){
-        $item = [
-            'param' => $text
-        ];
-        return view('products',$item);
+    public function index(){
+        $items = Product::all();
+        return view('products',compact('items'));
     }
 
-    public function detail($productsId){
+    public function search(Request $request){
+        $word = Product::with('season') -> KeywordSearch($request -> keyword) -> get();
+        $products = Product::all();
+        return view('products', compact('word'));
+    }
+    
 
-        return vier('products/$productId');
+    public function register(){
+        $seasons = Season::all();
+
+        return view('register', compact('seasons'));
     }
 
     public function store(Request $request){
-        $contact = $request -> only(['category_id','last_name','first_name','gender','email','tel','address','building','detail']);
-        Product::create($contact);
-        return view('thanks');
+        $product = $request -> only(['name','price','season_id','description']);
+        $file = $request -> file('image');
+        $seasons = Season::find($request->season_id);
+        Product::create($product);
+        return view('products',compact('file','seasons'));
     }
 
 
-/*検索
-    public function search(Request $request){
-    $contacts = Contact::simplePaginate(7);
-    $contacts = Contact::with('category') -> KeywordSearch($request -> keyword) -> GenderSearch($request -> gender) -> CategorySearch($request -> category_id) -> DateSearch($request -> created_at)->get();
-    $categories = Category::all();
-    return view('admin', compact('contacts', 'categories'));
-    }
-    */
+
+    
 }

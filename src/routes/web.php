@@ -20,14 +20,14 @@ Route::get('/', function () {
 });
 
 Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products/search', [ProductController::class, 'search']);
 
-Route::post('/products/{productsId?}', [ProdauctController::class, 'detail']);
+Route::get('/products/register', [ProductController::class, 'register']);
+Route::post('/products/register', [ProductController::class, 'store']);
 
-Route::patch('/products/{productsId?}/update', [ProdauctController::class, 'update']);
 
-Route::get('/products/register', [ProdauctController::class, 'store']);
 
-Route::get('/products/search', [ProdauctController::class, 'search']);
-
-Route::delete('/products/{productsId?}/delete', [ProdauctController::class, 'destroy']);
+Route::post('/products/{productsId?}', [ProductController::class, 'detail']);
+Route::patch('/products/{productsId?}/update', [ProductController::class, 'update']);
+Route::delete('/products/{productsId?}/delete', [ProductController::class, 'destroy']);
 
