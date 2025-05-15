@@ -1,0 +1,63 @@
+.header {
+    background-color: #FFFFFF;
+}
+
+.header__title {
+    font-style: jsMath-cmti10;
+    color: #F5C800;
+}
+
+
+.register__content {
+    width: 60%;
+    background-color: #F8F8F8;
+}
+.registration__title {
+        font-size: 20px;
+        display: inline-block;
+
+}
+
+.form__group {
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+.form__group-title {
+    
+}
+.form__label--item {
+    color: #4B4B4B;
+}
+.form__label--required {
+    background-color: #FD0707;
+    color: #FFFFFF;
+}
+.form__label--multi {
+    color: #FD0707;
+}
+
+
+.form__group-content {
+
+}
+.form__label--item{
+    border: solid 1px #E0DFDE;
+}
+.form__error {
+    color: #FD0707;
+}
+
+
+.form__button {
+    margin: 0 auto;
+}
+.form__button-return {
+    display: inline-block;
+    background-color: #E0DFDE;
+}
+.form__button-submit {
+    display: inline-block;
+    background-color: #F5C800;
+}
