@@ -44,7 +44,7 @@
                     <input type="text" name="price" placeholder="値段を入力" value="" />
                </div>
                 <div class="form__error">
-                @error('email')
+                @error('price')
                 {{ $message }}
                 @enderror
                 </div>
@@ -69,9 +69,10 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--checkbox">
-                    @foreach($seasons as $season)
-                    <input [type="checkbox"] name="season_id" value="" />{{ $season->name }}<span class="season__gap"></span>
-                    @endforeach           
+                    <label><input class="visibility-hidden" type="checkbox" name="season_id" value="1" /><span class="radio-text">春<span class="season__gap"></span></span></label>
+                    <label><input class="visibility-hidden" type="checkbox" name="season_id" value="" /><span class="radio-text">夏<span class="season__gap"></span></span></label>
+                    <label><input class="visibility-hidden" type="checkbox" name="season_id" value="" /><span class="radio-text">秋<span class="season__gap"></span></span></label>
+                    <label><input class="visibility-hidden" type="checkbox" name="season_id" value="" /><span class="radio-text">冬<span class="season__gap"></span></span></label>
                 </div>
                 <div class="form__error">
                 @error('season')

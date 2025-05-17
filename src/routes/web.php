@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,8 +25,9 @@ Route::get('/products/register', [ProductController::class, 'register']);
 Route::post('/products/register', [ProductController::class, 'store']);
 
 
+Route::get('/products/{productsId}', [ProductController::class, 'detail']);
+Route::patch('/products/{productsId}/update', [ProductController::class, 'update']);
+Route::delete('/products/{productsId}/delete', [ProductController::class, 'destroy']);
 
-Route::post('/products/{productsId?}', [ProductController::class, 'detail']);
-Route::patch('/products/{productsId?}/update', [ProductController::class, 'update']);
-Route::delete('/products/{productsId?}/delete', [ProductController::class, 'destroy']);
 
+Route::resource('upload',ProductController::class);

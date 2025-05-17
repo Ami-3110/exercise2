@@ -20,6 +20,7 @@ main {
     font-size: 20px;
     display: inline-block;
     height: 50px;
+    margin-top: 20px;
 
 }
 
@@ -61,21 +62,53 @@ main {
 .form__select--button input {
     color: #4B4B4B;
 }
-input[type=checkbox] {
-    display: none;       
+/*.visibility-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
 }
-.form__input--checkbox {
-    font-size: 14px;
-    color: #4B4B4B;
-}
-.form__input--checkbox input{
-    width: 20px;
+.radio-text {
+    cursor: pointer;
     display: inline-block;
-    border: #4B4B4B 1px solid;
-    border-radius: 50%;
+    padding: 5px 0 5px 30px;
+    position: relative;
     font-size: 14px;
-    color: #4B4B4B;
+    color: #4B4B4B;  
 }
+input[type=radio]:checked+.radio-text::after {
+    opacity: 1;
+}
+.radio-text::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 1px solid #4B4B4B;
+    border-radius: 50%;
+}
+.radio-text::after {
+    content: "";
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #4B4B4B;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    opacity: 0;
+}*/
+
 .season__gap {
     margin-right: 20px;
 }

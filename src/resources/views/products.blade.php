@@ -38,19 +38,22 @@
             </form>
         </aside>
 
-<article class="products__first-row">
+<article class="products__display">
     <form class="cards" action="/products" method="get">
     @csrf
     <div class="flex__item">
         @foreach ($items as $item)
+        <a href="/products/{{ $item['id']}}">
         <div class="product__card">
-            <div class="card__img">
-                <img src ="{{ $item['image'] }}" /></div>
-            <div class="card__content">
-                <div class="card__content-name">{{ $item['name'] }}</div>
-                <div class="card__content-price">{{ $item['price'] }}</div>
-            </div>
+                <div class="card__img">
+                    <img class="" src="{{ asset('storage/'. $item['image']) }}" alt="" />
+                </div>
+                <div class="card__content">
+                    <div class="card__content-name">{{ $item['name'] }}</div>
+                    <div class="card__content-price">{{ $item['price'] }}</div>
+                </div>
         </div>
+        </a>
         @endforeach
     </div>
 </article>>  
