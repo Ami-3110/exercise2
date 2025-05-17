@@ -28,5 +28,5 @@ php artisan key:generate
 php artisan migrate
 シーディングの実行
 php artisan db:seed
-
+シンボリックリンクの作成
 php artisan storage:link
