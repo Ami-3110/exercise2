@@ -25,9 +25,9 @@ Route::get('/products/register', [ProductController::class, 'register']);
 Route::post('/products/register', [ProductController::class, 'store']);
 
 
-Route::get('/products/{productsId}', [ProductController::class, 'detail']);
-Route::patch('/products/{productsId}/update', [ProductController::class, 'update']);
-Route::delete('/products/{productsId}/delete', [ProductController::class, 'destroy']);
+Route::get('/products/{productId}', [ProductController::class, 'detail']);
+Route::patch('/products/{productId}/update', [ProductController::class, 'update']);
+Route::delete('/products/{productId}/delete', [ProductController::class, 'destroy']);
 
 
 Route::resource('upload',ProductController::class);

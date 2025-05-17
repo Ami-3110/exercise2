@@ -15,14 +15,15 @@
 </header>
 
 <main>
-    <form class="detail" action="/products/{$productId}" method="get" enctype="multipart/form-data">
+    <form class="detail" action="/products/{$productId}" method="GET">
     @csrf
-    <div class="main__desplay">
-        <div class="breadcrumbs"><a class="toppage" href="/products">商品一覧</a> > {{-- $product['name'] --}}</div>
-    </div>
-        <form class="update__form" action="/products/{$productId}/update" method="post" enctype="multipart/form-data">
-        @method('patch')
-        @csrf
+        <div class="main__desplay">
+            <div class="breadcrumbs"><a class="toppage" href="/products">商品一覧</a> > {{ $product['name'] }}</div>
+        </div>
+    </form>
+    <form class="update__form" action="/products/{$productId}/update" method="POST" enctype="multipart/form-data">
+    @method('patch')
+    @csrf            
         <div class="detail__content">
         <div class="parent">
             <div class="form__group-img">
@@ -42,7 +43,7 @@
                 </div>
                 <div class="form__group-content">
                     <div class="form__input--text">
-                        <input type="text" name="name"  value="{{ $product['name']}}" />
+                        <input type="text" name="name"  placeholder="" value="{{ old($product['name'], $product->name)}}"/>
                     </div>
                     <div class="form__error">
                     @error('name')
@@ -101,15 +102,13 @@
                 <input type="hidden" name="product_id" value="{{ $product['id'] }}" />
                 <button class="form__button-submit" type="submit">変更を保存</button>
             </div>
-        </form>
-        <form class="delete-form" action="/products/{productId}/delete" method="post">
-                @method('DELETE') 
-                @csrf
-                <input type="hidden" name="id" value="{{ $product['id'] }}" />
-                <button class="form__button-delete" type="submit">
-                🗑️</button>
-        </form>
-        </div>
+    </form>
+    <form class="delete-form" action="/products/{productId}/delete" method="post">
+    @method('DELETE') 
+    @csrf
+        <input type="hidden" name="id" value="{{ $product['id'] }}" />
+        <button class="form__button-delete" type="submit">
+        🗑️</button>
     </form>
 </main>
 </body>

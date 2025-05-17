@@ -56,9 +56,13 @@
         </a>
         @endforeach
     </div>
-</article>>  
-
-</div>
+    </form>
+</article>
+<footer class="footer">
+    <div class="pagination">
+        <div class="d-flex justify-content-center">{{ $items->links() }}</div>
+    </div>
+</footer>
 </main>
 </body>
 </html>

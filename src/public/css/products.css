@@ -45,8 +45,6 @@ a {
 .search {
     grid-row: 2/7;
     grid-column: 1/2;
-
-
 }
 .search-form__item-input {
     margin: 0 10px 10px 10px;
@@ -110,11 +108,18 @@ a {
 .card__content-name {
     display: inline-block;
     margin-left: 10px;
-    /* 横並びにするためにinline-blockを指定 */
 }
-
 .card__content-price {
     display: inline-block;
     margin-right: 10px;
-    /* 横並びにするためにinline-blockを指定 */
 }
+
+.footer {
+    grid-row: 8/8;
+    grid-column: 1/5;
+    text-align: center;
+}
+
+.pagination {
+        justify-content: center;
+    }

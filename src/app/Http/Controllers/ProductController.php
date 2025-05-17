@@ -18,7 +18,7 @@ class ProductController extends Controller
     }
 
     public function search(Request $request){
-        $word = Product::with('season') -> KeywordSearch($request -> keyword) -> get();
+        $word = Product::with('') -> KeywordSearch($request -> keyword) -> get();
         /*orderBy('price', $request -> order);*/
         return view('products', compact('word'));
     }
@@ -51,15 +51,15 @@ class ProductController extends Controller
 
 
 
-    public function detail($productsId){
-        $product = Product::find($productsId);
+    public function detail($productId){
+        $product = Product::find($productId);
         $season = Product_seasons::all();
         return view('detail',compact('product','season'));
     }
 
-    public function update(ProductRequest $request, $productsId){
-        $product = $request -> only(['image','name','price','description']);
-        Product::find($product -> id) ->update($product);
+    public function update(ProductRequest $request,$productId){
+        $product = $request -> all();
+        Product::find($request -> id) ->update($product);
         return redirect('detail');
     }
  
