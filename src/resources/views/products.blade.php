@@ -32,8 +32,8 @@
                 <div class="search__form-sub">価格順で表示</div>
                 <select class="search-form__item-price" name="price">
                     <option value="">価格で並べ替え</option>
-                    <option name ="price" value="1">高い順に表示</option>
-                    <option name ="price" value="2">低い順に表示</option>
+                    <option name ="price" value="asc">高い順に表示</option>
+                    <option name ="price" value="desc">低い順に表示</option>
                 </select>
             </form>
         </aside>

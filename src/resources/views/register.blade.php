@@ -89,7 +89,7 @@
                     <textarea name="description" placeholder="商品の説明を入力" value=""></textarea>
                 </div>
                 <div class="form__error">
-                @error('discription')
+                @error('description')
                 {{ $message }}
                 @enderror
                 </div>
