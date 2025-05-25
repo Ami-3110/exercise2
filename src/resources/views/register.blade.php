@@ -69,10 +69,10 @@
             </div>
             <div class="form__group-content">
                 <div class="form__input--checkbox">
-                    <label><input class="visibility-hidden" type="checkbox" name="season_id" value="1" /><span class="radio-text">春<span class="season__gap"></span></span></label>
-                    <label><input class="visibility-hidden" type="checkbox" name="season_id" value="" /><span class="radio-text">夏<span class="season__gap"></span></span></label>
-                    <label><input class="visibility-hidden" type="checkbox" name="season_id" value="" /><span class="radio-text">秋<span class="season__gap"></span></span></label>
-                    <label><input class="visibility-hidden" type="checkbox" name="season_id" value="" /><span class="radio-text">冬<span class="season__gap"></span></span></label>
+                    @foreach($seasons as $season)
+                        <input type="checkbox" id="season_{{ $season->id }}" value="{{ $season->id }}" name="season[]" /><label for="season_{{ $season->id }}">{{ $season->name }}</label>
+                    @endforeach
+
                 </div>
                 <div class="form__error">
                 @error('season')

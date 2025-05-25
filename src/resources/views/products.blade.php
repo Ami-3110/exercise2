@@ -22,9 +22,8 @@
         </div>
 
         <aside class="search">
-        <form class="search-form" action="/products/search" method="get">
+        <form class="search-form" action="/products/search" method="POST">
         @csrf
-        @method('search')
             <div class="search-form__item">
                 <input class="search-form__item-input" type="text" name="keyword" placeholder="商品名で検索" value="{{ old('keyword') }}"/>
                 <button class="search__button-submit" type="submit">検索</button>
@@ -36,17 +35,27 @@
                     <option name ="price" value="desc">低い順に表示</option>
                 </select>
             </form>
+            @if(@isset($sort)&& $sort != "")
+            <div class="sort_contents">
+                <p class="searched_data">{{$sort}}</p>
+                <div class="close-content">
+                    <a href="/products">
+                        <img src="{{ asset('/images/close-icon.png') }}" alt="閉じるアイコン" class="img-close-icon" />
+                    </a>
+                </div>
+            </div>
+            @endif
         </aside>
 
 <article class="products__display">
-    <form class="cards" action="/products" method="get">
+    <form class="cards" action="/products" method="GET">
     @csrf
     <div class="flex__item">
         @foreach ($items as $item)
         <a href="/products/{{ $item['id']}}">
         <div class="product__card">
                 <div class="card__img">
-                    <img class="" src="{{ asset('storage/'. $item['image']) }}" alt="" />
+                    <img class="" src="{{ asset('storage/images/'. $item['image']) }}" alt="" />
                 </div>
                 <div class="card__content">
                     <div class="card__content-name">{{ $item['name'] }}</div>
@@ -59,8 +68,8 @@
     </form>
 </article>
 <footer class="footer">
-    <div class="pagination">
-        <div class="d-flex justify-content-center">{{ $items->links() }}</div>
+    <div class="pagination-content">
+        <div class="d-flex justify-content-center">{{-- $items->links --}}</div>
     </div>
 </footer>
 </main>

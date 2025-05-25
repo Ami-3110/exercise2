@@ -14,20 +14,29 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/products',[ProductController::class,'index']);
+Route::get('/products/search',[ProductController::class,'search']);
 
-Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/search', [ProductController::class, 'search']);
+Route::get('/products/register',[ProductController::class,'register']);
+Route::post('/products/register',[ProductController::class,'store']);
 
-Route::get('/products/register', [ProductController::class, 'register']);
-Route::post('/products/register', [ProductController::class, 'store']);
-
-
-Route::get('/products/{productId}', [ProductController::class, 'detail']);
-Route::patch('/products/{productId}/update', [ProductController::class, 'update']);
-Route::delete('/products/{productId}/delete', [ProductController::class, 'destroy']);
+Route::get('/products/{productId}',[ProductController::class,'detail']);
+Route::get('/products/{productId}/update',[ProductController::class,'update']);
+Route::get('/products/{productId}/delete',[ProductController::class,'destroy']);
 
 
-Route::resource('upload',ProductController::class);
+
+/* お見本 */
+/*
+Route::get('/products', [ProductController::class, 'getProducts']);
+Route::get('/products/search', [ProductController::class, 'getSearch']);
+Route::post('/products/search', [ProductController::class, 'postSearch']);
+
+Route::get('/products/register', [SeasonController::class, 'getRegister']);
+Route::post('/product/upload', [ProductController::class, 'upload']);
+
+Route::get('/products/detail/{product_id}', [ProductController::class, 'getDetail']);
+Route::post('/products/update', [ProductController::class, 'postUpdate']);
+Route::get('/products/{product_id}/delete', [ProductController::class, 'postDelete']);
+
+*/

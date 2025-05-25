@@ -6,68 +6,53 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Season;
 use App\Models\Product_seasons;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
     public function index(){
         $items = Product::all();
-        $items = Product::simplePaginate(6);       
-        return view('products',compact('items'));
+        return view('products', compact('items'));
     }
-
-    public function search(Request $request){
-        $word = Product::with('') -> KeywordSearch($request -> keyword) -> get();
-        /*orderBy('price', $request -> order);*/
-        return view('products', compact('word'));
-    }
-
 
     public function register(){
-        $seasons = Season::all();
-        return view('register', compact('seasons'));
-    }
-
+    $seasons = Season::all();
+    return view('register', compact('seasons'));
+}
 
 
     public function store(ProductRequest $request){
-        $product = $request ->all();
-        $imgname = $request -> file('image') -> getClientOriginalName();
-        $save = $request -> file('image') -> storeAs('',$imgname,'public');
-        $product['image'] = $imgname;
-        Product::create($product);
-        
-        $season = $request -> only(['season_id']);
-        /*$season_ids = $request -> only(['season_id']);
-        foreach ($season_ids as $season_id)
-            $product_id = Product::where('name','$request->name') -> value('id');
-            $new_culumn = array('season_id','product_id');
-            Product_seasons::create();*/
+            $imgname = $request -> file('image') -> getClientOriginalName();
+            $save = $request -> file('image') -> storeAs('images',$imgname,'public');
+
+            $product_data = new Product();
+            $product_data->name = $request -> input('name');
+            $product_data->price = $request -> input('price');
+            $product_data->image = $imgname;
+            $product_data->description = $request -> input('description');
+
+            $product_data->save();
+            
+            $product_seasons = $request -> input('season', []);
+            $new_product_id = $product_data->id;
+            foreach($product_seasons as $product_season){
+                $product_season_data = new Product_seasons();
+                $product_season_data->product_id = $new_product_id;
+                $product_season_data->season_id = $product_season;
+                $product_season_data->save();
+            }
+            return redirect('products');
+        }
+
+        public function detail($productId){
+            $product = Product::find($productId);
+            $season = Product_seasons::all();
+            return view('detail',compact('product','season'));
+        }
 
 
-        return redirect('products');
-    }
-
-
-
-    public function detail($productId){
-        $product = Product::find($productId);
-        $season = Product_seasons::all();
-        return view('detail',compact('product','season'));
-    }
-
-    public function update(ProductRequest $request,$productId){
-        $product = $request -> all();
-        Product::find($request -> id) ->update($product);
-        return redirect('detail');
-    }
- 
-    public function destroy(Request $request){
-        Product::find($request -> id)->delete();
-        return redirect('products');
-    }
-
-
-    
 }
+
+
