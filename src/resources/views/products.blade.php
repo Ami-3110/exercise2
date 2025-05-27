@@ -24,12 +24,12 @@
         <aside class="search">
         <form class="search-form" action="/products/search" method="POST">
         @csrf
-            <div class="search-form__item">
-                <input class="search-form__item-input" type="text" name="keyword" placeholder="商品名で検索" value="{{ old('keyword') }}"/>
+            <div class="search-form__product">
+                <input class="search-form__product-input" type="text" name="keyword" placeholder="商品名で検索" value="{{ old('keyword') }}"/>
                 <button class="search__button-submit" type="submit">検索</button>
 
                 <div class="search__form-sub">価格順で表示</div>
-                <select class="search-form__item-price" name="price">
+                <select class="search-form__product-price" name="price">
                     <option value="">価格で並べ替え</option>
                     <option name ="price" value="asc">高い順に表示</option>
                     <option name ="price" value="desc">低い順に表示</option>
@@ -50,16 +50,16 @@
 <article class="products__display">
     <form class="cards" action="/products" method="GET">
     @csrf
-    <div class="flex__item">
-        @foreach ($items as $item)
-        <a href="/products/{{ $item['id']}}">
+    <div class="flex__product">
+        @foreach ($products as $product)
+        <a href="/products/{{ $product->id }}">
         <div class="product__card">
                 <div class="card__img">
-                    <img class="" src="{{ asset('storage/images/'. $item['image']) }}" alt="" />
+                    <img class="" src="{{ asset('storage/images/'. $product['image']) }}" alt="" />
                 </div>
                 <div class="card__content">
-                    <div class="card__content-name">{{ $item['name'] }}</div>
-                    <div class="card__content-price">{{ $item['price'] }}</div>
+                    <div class="card__content-name">{{ $product['name'] }}</div>
+                    <div class="card__content-price">{{ $product['price'] }}</div>
                 </div>
         </div>
         </a>
@@ -69,7 +69,7 @@
 </article>
 <footer class="footer">
     <div class="pagination-content">
-        <div class="d-flex justify-content-center">{{-- $items->links --}}</div>
+        <div class="d-flex justify-content-center">{{-- $products->links --}}</div>
     </div>
 </footer>
 </main>

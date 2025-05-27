@@ -19,7 +19,7 @@
 
         <div class="register__content">
             <div class="registration__title">商品登録</div>
-        <form class="registration__form" action="/products/register/" method="post" enctype="multipart/form-data">
+        <form class="registration__form" action="/products/register/" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form__group">
             <div class="form__group-title">

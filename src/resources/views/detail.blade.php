@@ -15,21 +15,20 @@
 </header>
 
 <main>
-    <form class="detail" action="/products/{$productId}" method="GET">
-    @csrf
         <div class="main__desplay">
             <div class="breadcrumbs"><a class="toppage" href="/products">商品一覧</a> > {{ $product['name'] }}</div>
         </div>
-    </form>
-    <form class="update__form" action="/products/{$productId}/update" method="POST" enctype="multipart/form-data">
-    @method('patch')
+        <form class="update__form" action="/products/{{ $product['id'] }}/update" method="POST" enctype="multipart/form-data">
     @csrf            
         <div class="detail__content">
         <div class="parent">
             <div class="form__group-img">
-                <img class="image" src="{{ asset('storage/'. $product['image']) }}" alt="" />
+                @if (!empty($product['image']))
+                <img class="image" src="{{ asset('storage/images/' . $product['image']) }}" alt="選択済みの画像" />
+                @endif
                 <div class="form__select--button">
-                <input type="file" name="image" placeholder="ファイルを選択" value="{{ $product['image'] }}"/>
+                    <input type="file" name="image" />
+                    <input type="hidden" name="old_image" value="{{ $product['image'] }}">
                 </div>
                 <div class="form__error">
                 @error('image')
@@ -43,7 +42,7 @@
                 </div>
                 <div class="form__group-content">
                     <div class="form__input--text">
-                        <input type="text" name="name"  placeholder="" value="{{ old($product['name'], $product->name)}}"/>
+                        <input type="text" name="name"  placeholder="" value="{{ $product['name'] }}"/>
                     </div>
                     <div class="form__error">
                     @error('name')
@@ -70,12 +69,10 @@
                     <span class="form__label--item">季節</span>
                 </div>
                 <div class="form__group-content">
-                    <div class="form__input--checkbox">
-                        <label><input class="visibility-hidden" type="checkbox" name="season_id" value="1" /><span class="radio-text">春<span class="season__gap"></span></span></label>
-                        <label><input class="visibility-hidden" type="checkbox" name="season_id" value="" /><span class="radio-text">夏<span class="season__gap"></span></span></label>
-                        <label><input class="visibility-hidden" type="checkbox" name="season_id" value="" /><span class="radio-text">秋<span class="season__gap"></span></span></label>
-                        <label><input class="visibility-hidden" type="checkbox" name="season_id" value="" /><span class="radio-text">冬<span class="season__gap"></span></span></label>
-                    </div>
+                    @foreach ($seasons as $season)
+                    <input type="checkbox" id="season_{{ $season->id }}" value="{{$season->id}}" {{in_array($season->id, $product->seasons->pluck('id')->toArray()) ?  'checked':''}} name="season[]" />
+                    <label for="season_{{ $season->id }}">{{$season->name}}</label>
+                    @endforeach
                     <div class="form__error">
                     @error('season')
                     {{ $message }}
