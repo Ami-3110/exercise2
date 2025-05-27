@@ -100,8 +100,7 @@
                 <button class="form__button-submit" type="submit">変更を保存</button>
             </div>
     </form>
-    <form class="delete-form" action="/products/{productId}/delete" method="post">
-    @method('DELETE') 
+    <form class="delete-form" action="/products/{{ $product['id'] }}/delete" method="POST">
     @csrf
         <input type="hidden" name="id" value="{{ $product['id'] }}" />
         <button class="form__button-delete" type="submit">

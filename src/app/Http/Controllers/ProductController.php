@@ -70,6 +70,10 @@ class ProductController extends Controller
                 return redirect('products');
         }
 
+        public function destroy($productId){
+            Product::findOrFail($productId)->delete();
+            return redirect('products');
+        }
 }
 
 
