@@ -22,25 +22,25 @@
         </div>
 
         <aside class="search">
-        <form class="search-form" action="/products/search" method="POST">
-        @csrf
+        <form class="search-form" action="/products/search" method="GET">
             <div class="search-form__product">
-                <input class="search-form__product-input" type="text" name="keyword" placeholder="商品名で検索" value="{{ old('keyword') }}"/>
+                <input class="search-form__product-input" type="text" name="keyword" placeholder="商品名で検索" value="{{request('keyword') }}"/>
                 <button class="search__button-submit" type="submit">検索</button>
 
                 <div class="search__form-sub">価格順で表示</div>
-                <select class="search-form__product-price" name="price">
+                <select class="search-form__product-price" name="sort_price">
                     <option value="">価格で並べ替え</option>
-                    <option name ="price" value="asc">高い順に表示</option>
-                    <option name ="price" value="desc">低い順に表示</option>
+                    <option value="desc"{{ request('sort_price') == 'desc' ? 'selected' : ''}}>高い順に表示</option>
+                    <option  value="asc" {{ request('sort_price') == 'asc' ? 'selected' : '' }}>低い順に表示</option>
                 </select>
             </form>
-            @if(@isset($sort)&& $sort != "")
+            @if(isset($sort_price)&& $sort_price != "")
             <div class="sort_contents">
-                <p class="searched_data">{{$sort}}</p>
+                <p class="searched_data">{{$sort_price}}</p>
                 <div class="close-content">
                     <a href="/products">
-                        <img src="{{ asset('/images/close-icon.png') }}" alt="閉じるアイコン" class="img-close-icon" />
+                        <img src="{{ asset('images/close-icon.png') }}" alt="閉じるアイコン" class="img-close-icon" />
+
                     </a>
                 </div>
             </div>
@@ -69,7 +69,7 @@
 </article>
 <footer class="footer">
     <div class="pagination-content">
-        <div class="d-flex justify-content-center">{{-- $products->links --}}</div>
+        <div class="d-flex justify-content-center">{{-- $products->links() --}}</div>
     </div>
 </footer>
 </main>

@@ -13,7 +13,7 @@ class Product extends Model
         return $this -> belongsToMany(Season::class,'product_season','product_id','season_id',);
     }
 
-    public function checkSeason($season,$product)
+    /*public function checkSeason($season,$product)
     { 
         $season_id = $season->id;
         $product_id = $product->id;
@@ -27,7 +27,20 @@ class Product extends Model
         }
         return "no";
         
+    }*/
+    
+    public function scopeSearch($query, $keyword){
+    if (!empty($keyword)) {
+        return $query->where('name', 'like', "%{$keyword}%");
+    }
+    return $query;
     }
 
+    public function scopeSortByPrice($query, $order){
+    if (in_array($order, ['asc', 'desc'])) {
+        return $query->orderBy('price', $order);
+    }
+    return $query;
+    }
 
 }
