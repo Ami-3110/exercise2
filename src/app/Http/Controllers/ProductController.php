@@ -74,17 +74,16 @@ class ProductController extends Controller
     public function update(ProductRequest $request,$productId){           
         $product_data = Product::find($productId);
         if ($request->hasFile('image')) {
-        $imgname = $request->file('image')->getClientOriginalName();
-        $request->file('image')->storeAs('images', $imgname, 'public');
-        $product_data->image = $imgname;
+            $imgname = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('images', $imgname, 'public');
+        }else{
+            $imgname = $request->input('old_image');
         }
         $product_data->name = $request -> input('name');
         $product_data->price = $request -> input('price');
         $product_data->image = $imgname;
-        
         $product_data->description = $request -> input('description');
         $product_data->save();
-        
         $product_data->seasons()->sync($request->input('season', [] ));
             return redirect('products');
     }

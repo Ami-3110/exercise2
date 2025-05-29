@@ -60,7 +60,9 @@ main {
     height: 30px;
     border: solid 1px #E0DFDE;
 }
-
+.form__select--button {
+    color: #4B4B4B;
+}
 .form__image-preview {
     width: 100%;
 }
@@ -71,6 +73,9 @@ main {
     border-radius: 4px;
 }
 
+.form__input--checkbox label {
+    color: #4B4B4B;
+}
 .season__gap {
     margin-right: 50px;
 }

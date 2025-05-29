@@ -23,13 +23,21 @@ class ProductRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => ['required',],
-            'price'=> ['required','integer','between:0,10000'],
-            'image'  => ['required','image','mimes:png,jpeg,jpg'],
-            'season.*' => ['required','integer', 'exists:seasons,id'],
-            'description' =>['required','max:120'],
-        ];
+    $rules = [
+        'name' => ['required'],
+        'price'=> ['required', 'integer', 'between:0,10000'],
+        'season.*' => ['required', 'integer', 'exists:seasons,id'],
+        'description' => ['required', 'max:120'],
+    ];
+
+    // 更新時は画像を必須にしない
+    if ($this->isMethod('post') && $this->routeIs('products.store')) {
+        $rules['image'] = ['required', 'image', 'mimes:png,jpeg,jpg'];
+    } elseif ($this->isMethod('post') && $this->routeIs('products.update')) {
+        $rules['image'] = ['nullable', 'image', 'mimes:png,jpeg,jpg'];
+    }
+
+    return $rules;
     }
 
     public function messages(){

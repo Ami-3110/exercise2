@@ -71,7 +71,7 @@
                 <div class="form__group-content">
                     @foreach ($seasons as $season)
                     <input type="checkbox" id="season_{{ $season->id }}" value="{{$season->id}}" {{in_array($season->id, $product->seasons->pluck('id')->toArray()) ?  'checked':''}} name="season[]" />
-                    <label for="season_{{ $season->id }}">{{$season->name}}</label>
+                    <label for="season_{{ $season->id }}">{{$season->name}}<span class="season__gap"></span></label>
                     @endforeach
                     <div class="form__error">
                     @error('season')
