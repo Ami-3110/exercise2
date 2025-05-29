@@ -1,54 +1,36 @@
 @if ($paginator->hasPages())
-    <nav class="p-pagination">
-        <ul>
-        <!-- 前へ移動ボタン -->
-        @if ($paginator->onFirstPage())
-            <li class="disabled">
-                <img src="{{ asset('img/arrow-previous.svg') }}" class="p-pagination__previous" alt="<">
-            </li>
-        @else
-            <li>
-                <a href="{{ $paginator->previousPageUrl() }}">
-                    <img src="{{ asset('img/arrow-previous.svg') }}" class="p-pagination__previous" alt="<">
-                </a>
-            </li>
-        @endif
-
-        <!-- ページ番号　-->
-        @foreach ($items as $item)
-            @if (is_string($item))
-                <li class="disabled">
-                    {{ $item }}
-                </li>
+    <nav class="pagination-wrapper" role="navigation" aria-label="Pagination Navigation">
+        <ul class="pagination-list">
+            {{-- 前のページリンク --}}
+            @if ($paginator->onFirstPage())
+                <li class="pagination-disabled">&lt;</li>
+            @else
+                <li><a href="{{ $paginator->previousPageUrl() }}" class="pagination-link">&lt;</a></li>
             @endif
 
-            @if (is_array($item))
-                @foreach ($item as $page => $url)
-                    @if ($page == $paginator->currentPage())
-                        <li class="active">
-                            {{ $page }}
-                        </li>
-                    @else
-                        <li class="active">
-                            <a href="{{ $url }}">{{ $page }}</a>
-                        </li>
-                    @endif
-                @endforeach
-            @endif
-        @endforeach
+            {{-- ページ番号リンク --}}
+            @foreach ($elements as $element)
+                @if (is_string($element))
+                    <li class="pagination-disabled">{{ $element }}</li>
+                @endif
 
-        <!-- 次へ移動ボタン -->
-        @if ($paginator->hasMorePages())
-            <li>
-                <a href="{{ $paginator->nextPageUrl() }}">
-                    <img src="{{ asset('img/arrow-next.svg') }}" class="p-pagination__next" alt=">">
-                </a>
-            </li>
-        @else
-            <li class="disabled">
-                <img src="{{ asset('img/arrow-next.svg') }}" class="p-pagination__next" alt=">">
-            </li>
-        @endif
+                @if (is_array($element))
+                    @foreach ($element as $page => $url)
+                        @if ($page == $paginator->currentPage())
+                            <li><span class="pagination-current">{{ $page }}</span></li>
+                        @else
+                            <li><a href="{{ $url }}" class="pagination-link">{{ $page }}</a></li>
+                        @endif
+                    @endforeach
+                @endif
+            @endforeach
+
+            {{-- 次のページリンク --}}
+            @if ($paginator->hasMorePages())
+                <li><a href="{{ $paginator->nextPageUrl() }}" class="pagination-link">&gt;</a></li>
+            @else
+                <li class="pagination-disabled">&gt;</li>
+            @endif
         </ul>
     </nav>
 @endif

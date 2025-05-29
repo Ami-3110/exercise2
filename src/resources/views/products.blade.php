@@ -33,7 +33,7 @@
                     <option value="desc"{{ request('sort_price') == 'desc' ? 'selected' : ''}}>高い順に表示</option>
                     <option  value="asc" {{ request('sort_price') == 'asc' ? 'selected' : '' }}>低い順に表示</option>
                 </select>
-            </form>
+        </form>
             @if(isset($sort_price)&& $sort_price != "")
             <div class="sort_contents">
                 <p class="searched_data">{{$sort_price}}</p>
@@ -45,6 +45,7 @@
                 </div>
             </div>
             @endif
+            <p class="line"></p>    
         </aside>
 
 <article class="products__display">
@@ -59,7 +60,7 @@
                 </div>
                 <div class="card__content">
                     <div class="card__content-name">{{ $product['name'] }}</div>
-                    <div class="card__content-price">{{ $product['price'] }}</div>
+                    <div class="card__content-price">¥{{ $product['price'] }}</div>
                 </div>
         </div>
         </a>
@@ -68,8 +69,8 @@
     </form>
 </article>
 <footer class="footer">
-    <div class="pagination-content">
-        <div class="d-flex justify-content-center">{{-- $products->links() --}}</div>
+    <div class="d-flex justify-content-center">
+        {{ $products->links('vendor.pagination.custom') }}
     </div>
 </footer>
 </main>

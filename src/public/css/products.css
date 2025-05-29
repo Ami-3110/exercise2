@@ -23,18 +23,20 @@
 }
 
 .header__bar-title{
-    font-size: 20px;
+    font-size: 24px;
+    font-weight: bold;
     display: inline-block;
-    margin: auto 0;
+    margin: auto 20px;
 }
 
 .header__bar-add{
     display: inline-block;
     background-color: #FFA929;
-    height: 30px;
-    margin: auto 0;
+    height: 40px;
+    margin: auto 50px;
     padding: 0 15px;
     border: none;
+    border-radius: 5px;
 }
 
 a {
@@ -46,43 +48,49 @@ a {
     grid-row: 2/7;
     grid-column: 1/2;
 }
-.search-form__item-input {
-    margin: 0 10px 10px 10px;
+.search-form__product-input {
+    margin: 0 30px;
     width: 80%;
-    height: 30px;
+    height: 50px;
     border: solid 1px #E0DFDE;
-    border-radius: 20px;
-    font-size: 12px;
+    border-radius: 30px;
+    font-size: 16px;
     color: #E0DFDE;
+    padding-left: 10px;
 }
 .search__button-submit {
     display: block;
-    margin: 0 10px 10px 10px;
+    margin: 20px 30px ;
     width: 80%;
-    height: 30px;
+    height: 50px;
     background: #F5C800;
     border: none;
-    font-size: 12px;
+    border-radius: 5px;
+    font-size: 16px;
 }
 .search__form-sub {
-    margin: 40px 10px 10px 10px;
+    margin: 0  0 20px 30px  ;
+    font-size: 18px;
+    font-weight: bold;
 }
-.search-form__item-price {
-    margin: 0 10px 10px 10px;
+.search-form__product-price {
+    margin: 10px 30px;
+    padding-left: 10px;
     width: 80%;
-    height: 30px;
+    height: 50px;
     border: solid 1px #E0DFDE;
-    border-radius: 3px;
-    color: #E0DFDE;
-    font-size: 12px;
+    border-radius: 5px;
+    color: #8d8c8b;
+    font-size: 16px;
 }
 .sort_contents {
     display: flex;
     width: 150px;
     height: 40px;
-    margin-top: 10px;
+    margin: 10px 30px;
     border-radius: 20px;
     border: rgb(255, 200, 0) solid;
+    color: #8d8c8b;
 }
 
 .searched_data {
@@ -100,6 +108,11 @@ a {
     width: 20px;
     height: 20px;
 }
+.line {
+    border-bottom: solid 1px #E0DFDE;
+    margin: 15px 30px;
+}
+
 
 .products__display{
     grid-row: 2/7;
@@ -113,8 +126,9 @@ a {
 .product__card{
     display: inline-block;
     height: 300px;
-    width: 280px;
-    margin: 10px;
+    width: 340px;
+    margin-right: 10px;
+    margin-bottom: 15px;
     border-radius: 5px;
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
 }
@@ -127,61 +141,72 @@ a {
 .card__content{
     display: flex;
     justify-content: space-between;
+    margin: 10px 0 0 0;
+    padding: 10px;
+    font-size: 20px;
 }
 .card__content-name {
     display: inline-block;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 .card__content-price {
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
-.footer {
-    grid-row: 8/8;
-    grid-column: 1/5;
-    text-align: center;
-}
 
 
 /* pagination */
-
-.pagination-content {
+.footer {
+    grid-row: 8/8;
+    grid-column: 1/5;
+}
+.pagination-wrapper {
     text-align: center;
-    display: flex;
-    justify-content: center;
 }
 
-.pagination {
-    display: flex;
-    margin-left: -90px;
+.pagination-list {
+    display: inline-flex;
+    list-style: none;
+    padding: 0;
+    gap: 10px;
 }
 
-.page-item-active {
-    width: 40px;
-    height: 40px;
-    border-radius: 25px;
-    background-color: rgb(255, 200, 0);
-    margin-left: 10px;
-    margin-right: 10px;
-    padding-top: 7px;
-}
-
-.page-item {
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
+.pagination-link,
+.pagination-current {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 50%;
     background-color: white;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding-top: 7px;
-}
-
-.page-link {
-    text-decoration: none;
     color: black;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    transition: all 0.2s;
 }
 
-.page-link-active {
-    color: white;
+.pagination-current {
+    background-color: #facc15;
+    /* 黄色 (#facc15 は Tailwind の yellow-400) */
+    font-weight: bold;
+    border: 1px solid #facc15;
+    color: #FFFFFF;
+}
+
+.pagination-link:hover {
+    background-color: #e2e8f0;
+}
+
+.pagination-disabled {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #f1f5f9;
+    color: #94a3b8;
+    border: 1px solid #ccc;
 }
