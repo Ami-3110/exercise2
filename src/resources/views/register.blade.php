@@ -7,6 +7,7 @@
     <title>Register</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/register.css') }}" />
+
 </head>
 
 <body>
@@ -54,8 +55,9 @@
                 <span class="form__label--item">商品画像</span><span class="form__label--required">必須</span>
             </div>
             <div class="form__group-content">
+                <div id="list" class="form__image-preview"></div>
                 <div class="form__select--button">
-                    <input type="file" name="image" placeholder="ファイルを選択" value=""/>
+                    <input type="file" id="product_image" name="image" placeholder="ファイルを選択" value=""/>
                 </div>
                 <div class="form__error">
                 @error('image')
@@ -71,6 +73,7 @@
                 <div class="form__input--checkbox">
                     @foreach($seasons as $season)
                         <input type="checkbox" id="season_{{ $season->id }}" value="{{ $season->id }}" name="season[]" /><label for="season_{{ $season->id }}">{{ $season->name }}</label>
+                        <span class="season__gap"></span>
                     @endforeach
 
                 </div>
@@ -102,5 +105,31 @@
         </form>
         </div>
     </main>
+     <!-- こちらから下は教材の範囲外のリアルタイム画像表示になります -->
+     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const input = document.getElementById('product_image');
+            const preview = document.getElementById('list');
+    
+            input.addEventListener('change', function (event) {
+                preview.innerHTML = ''; // プレビューを初期化
+                const files = event.target.files;
+    
+                if (files.length > 0) {
+                    Array.from(files).forEach(file => {
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            const img = document.createElement('img');
+                            img.src = e.target.result;
+                            img.classList.add('reader_image'); // CSSでサイズ調整などするなら
+                            preview.appendChild(img);
+                        }
+                        reader.readAsDataURL(file);
+                    });
+                }
+            });
+        });
+    </script>
+    
 </body>
 </html>
